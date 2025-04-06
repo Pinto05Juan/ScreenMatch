@@ -1,11 +1,15 @@
 package com.pintoneta.screenmatch.calculo;
 
-import com.pintoneta.screenmatch.modelos.Pelicula;
+import com.pintoneta.screenmatch.modelos.Titulo;
 
 public class Calculadora {
     private int tiempoTotal;
 
-    public void incluirTitulo(Pelicula pelicula) {
-        tiempoTotal += pelicula.getDuracionEnMinutos();
+    public void incluirTitulo(Titulo titulo) {
+        this.tiempoTotal += titulo.getDuracionEnMinutos();
+    }
+
+    public int getTiempoTotal() {
+        return tiempoTotal;
     }
 }
