@@ -1,6 +1,6 @@
 package com.pintoneta.screenmatch.modelos;
 
-public class Titulo {
+public class Titulo implements Comparable<Titulo>{
     private String nombre;
     private int fechaLanzamiento;
     private int duracionEnMinutos;
@@ -8,6 +8,10 @@ public class Titulo {
     private float sumaDeLasEvaluaciones = 0;
     private int totalDeLasEvaluaciones;
 
+    public Titulo(String nombre, int fechaLanzamiento) {
+        this.nombre = nombre;
+        this.fechaLanzamiento = fechaLanzamiento;
+    }
 
     public void mostrarDatos() {
         System.out.println("El nombre de la pelicula es: " + this.nombre);
@@ -54,5 +58,10 @@ public class Titulo {
 
     public boolean isIncluidoEnElPlan() {
         return incluidoEnElPlan;
+    }
+
+    @Override
+    public int compareTo(Titulo otroTitulo) {
+        return this.getNombre().compareTo(otroTitulo.getNombre());
     }
 }
