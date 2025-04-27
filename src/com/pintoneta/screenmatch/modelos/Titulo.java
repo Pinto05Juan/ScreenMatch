@@ -1,10 +1,13 @@
 package com.pintoneta.screenmatch.modelos;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Titulo implements Comparable<Titulo>{
+    @SerializedName("Title")
     private String nombre;
+    @SerializedName("Year")
     private int fechaLanzamiento;
     private int duracionEnMinutos;
-    private boolean incluidoEnElPlan;
     private float sumaDeLasEvaluaciones = 0;
     private int totalDeLasEvaluaciones;
 
@@ -13,18 +16,16 @@ public class Titulo implements Comparable<Titulo>{
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
+    public Titulo(TituloOmdb miTituloOmdb) {
+        this.nombre = miTituloOmdb.title();
+        this.fechaLanzamiento = Integer.valueOf(miTituloOmdb.year());
+        this.duracionEnMinutos = Integer.valueOf(miTituloOmdb.runtime().substring(0,2));
+    }
+
     public void mostrarDatos() {
         System.out.println("El nombre de la pelicula es: " + this.nombre);
         System.out.println("Su fecha de lanzamiento es: " + this.fechaLanzamiento);
         System.out.println("Su duracion en minutos es: " + getDuracionEnMinutos());
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setFechaLanzamiento(int fechaLanzamiento) {
-        this.fechaLanzamiento = fechaLanzamiento;
     }
 
     public void setDuracionEnMinutos(int duracionEnMinutos) {
@@ -56,12 +57,15 @@ public class Titulo implements Comparable<Titulo>{
         return fechaLanzamiento;
     }
 
-    public boolean isIncluidoEnElPlan() {
-        return incluidoEnElPlan;
-    }
-
     @Override
     public int compareTo(Titulo otroTitulo) {
         return this.getNombre().compareTo(otroTitulo.getNombre());
+    }
+
+    @Override
+    public String toString() {
+        return "nombre='" + nombre + '\'' +
+                ", fechaDeLanzamiento=" + fechaLanzamiento+
+                ", duracion="+duracionEnMinutos;
     }
 }
