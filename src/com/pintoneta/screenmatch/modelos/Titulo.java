@@ -1,6 +1,7 @@
 package com.pintoneta.screenmatch.modelos;
 
 import com.google.gson.annotations.SerializedName;
+import com.pintoneta.screenmatch.exception.ErrorConvercionDuracionException;
 
 public class Titulo implements Comparable<Titulo>{
     @SerializedName("Title")
@@ -19,7 +20,10 @@ public class Titulo implements Comparable<Titulo>{
     public Titulo(TituloOmdb miTituloOmdb) {
         this.nombre = miTituloOmdb.title();
         this.fechaLanzamiento = Integer.valueOf(miTituloOmdb.year());
-        this.duracionEnMinutos = Integer.valueOf(miTituloOmdb.runtime().substring(0,2));
+        if (miTituloOmdb.runtime().contains("N/A")) {
+            throw new ErrorConvercionDuracionException("No pude convetir la duracion, porque contiene un N/A");
+        }
+        this.duracionEnMinutos = Integer.valueOf(miTituloOmdb.runtime().substring(0,3).replace(" ", ""));
     }
 
     public void mostrarDatos() {
