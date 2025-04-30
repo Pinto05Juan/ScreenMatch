@@ -1,12 +1,9 @@
 package com.pintoneta.screenmatch.modelos;
 
-import com.google.gson.annotations.SerializedName;
 import com.pintoneta.screenmatch.exception.ErrorConvercionDuracionException;
 
 public class Titulo implements Comparable<Titulo>{
-    @SerializedName("Title")
     private String nombre;
-    @SerializedName("Year")
     private int fechaLanzamiento;
     private int duracionEnMinutos;
     private float sumaDeLasEvaluaciones = 0;

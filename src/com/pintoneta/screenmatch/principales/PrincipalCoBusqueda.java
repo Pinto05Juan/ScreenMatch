@@ -48,13 +48,13 @@ public class PrincipalCoBusqueda {
                         .send(request, HttpResponse.BodyHandlers.ofString());
 
                 String json = response.body();
-                System.out.println(json);
+                //System.out.println(json);
 
                 TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
-                System.out.println(miTituloOmdb);
+                //System.out.println(miTituloOmdb);
 
                 Titulo miTitulo = new Titulo(miTituloOmdb);
-                System.out.println(miTitulo);
+                //System.out.println(miTitulo);
                 titulos.add(miTitulo);
 
             } catch (NumberFormatException e) {
@@ -66,9 +66,11 @@ public class PrincipalCoBusqueda {
                 System.out.println(e.getMessage());
             }
         }
+
         FileWriter writer = new FileWriter("titulos.json");
         writer.write(gson.toJson(titulos));
         writer.close();
+        scan.close();
         System.out.println("Finalizo el programa");
     }
 }
